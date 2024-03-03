@@ -1,14 +1,18 @@
 #!/bin/bash
 source .env
 
-if [ ! -d outputs ];
+if [ ! -d ${RESULTADOS_DIR} ];
 then  
     echo "Exercicio não iniciado. Corra 'bash preparar_exercicio.sh'"
     exit 1
 fi
 
-cd $WORKING_DIR
 
+cd ${INSTALL_DIR}
+echo INSTALL_DIR-${INSTALL_DIR}
+echo WORKING_DIR-${WORKING_DIR}
+echo LOG_FILE-${LOG_FILE}
+pwd
 
 echo "###############" >> $LOG_FILE
 echo "FIM ###############" >> $LOG_FILE
@@ -27,12 +31,12 @@ HISTTIMEFORMAT="%F %T "
 set -o history
 history > $HISTORY_FILE
 
-tree >> ${FILE_SOLUTION}
-# zip -Tro ../$FILE_SOLUTION.zip ${WORKING_DIR} ${WORKING_DIR}/../outputs outputs # &>/dev/null 
-pwd
+tree ${WORKING_DIR} >> ${FILE_SOLUTION}
 
-zip -r ${ZIP_FILE}.zip info ${LOG_FILE_DIR} ${WORKING_DIR} &>/dev/null 
-rm -fr ${LOG_FILE_DIR} ${WORKING_DIR}
+# zip -Tro ../$FILE_SOLUTION.zip ${WORKING_DIR} ${WORKING_DIR}/../outputs outputs # &>/dev/null 
+
+zip -r ${ZIP_FILE}.zip info ${RESULTADOS_DIR} &>/dev/null 
+rm -fr ${RESULTADOS_DIR} ${WORKING_DIR}
 
 cd ..
 echo "Entregar o ficheiro '${ZIP_FILE}.zip' na classroom".

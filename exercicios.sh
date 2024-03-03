@@ -96,6 +96,9 @@ function create_exercices () {
 
     create_exercice_cp 1
     create_exercice_cp 2
+    create_exercice_cp 3
+    create_exercice_cp 4
+    create_exercice_cp 5
     
     
     

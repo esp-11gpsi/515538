@@ -15,22 +15,23 @@ function config_history () {
 }
 
 function config_local_environment () {
-  ## Prepare Ambiente
-  rm -fr $(pwd)/exercicio-aula-$USER*
-  [ -d $LOG_FILE_DIR  ] && rm -fr $LOG_FILE_DIR 
+  ## Prepare Ambiente~
+  
+  rm -fr ${WORKING_DIR}/exercicio-aula-*
+  [ -d ${RESULTADOS_DIR}  ] && rm -fr ${RESULTADOS_DIR} 
   ## [ -e resultado*.zip ] && rm resultado*.zip
-  mkdir $WORKING_DIR 
-  mkdir outputs
-  cd $WORKING_DIR
-
-set -xv
-  local DONWLOAD_FOLDER=$(grep DOWNLOAD ~/.config/user-dirs.dirs  | awk -F= '{print $2}' | awk F=/ '{print $2} s/\"//g | sed s/\'//g)
-  echo $DONWLOAD_FOLDER
-  read -p "Espera, pa"  
-  mkdir ${LOCAL_EXERCICE_FOLDER}
-  mv ${DONWLOAD_FOLDER}/*.zip ${LOCAL_EXERCICE_FOLDER}/
-  read -p "Espera"
-set +xv  
+  mkdir ${WORKING_DIR} 
+  mkdir ${RESULTADOS_DIR}
+  cd ${WORKING_DIR}
+  
+# set -xv
+#  local DONWLOAD_FOLDER=$(grep DOWNLOAD ~/.config/user-dirs.dirs  | awk -F= '{print $2}' | awk F=/ '{print $2} s/\"//g | sed s/\'//g)
+# echo $DONWLOAD_FOLDER
+#  read -p "Espera, pa"  
+#  mkdir ${LOCAL_EXERCICE_FOLDER}
+#  mv ${DONWLOAD_FOLDER}/*.zip ${LOCAL_EXERCICE_FOLDER}/
+#  read -p "Espera"
+# set +xv  
 }
 
 
@@ -38,7 +39,7 @@ function launch_exercice_terminal () {
   local MSG1="Realizar o exercicio neste terminal. As instruções para os exercicios estão nos ficheiros nos subdirectórios. "
   local MSG2='Começar pelo "ficheiro1" por ordem crescente'
   
-  gnome-terminal -- bash -c "cd ${WORKING_DIR};echo ${MSG1}${MSG2};tree;exec bash"
+  gnome-terminal -- bash -c "echo ${MSG1}${MSG2};tree;exec bash"
 }
 
 function random_string () {
@@ -81,25 +82,20 @@ function create_subdirs () {
 }
 
 function random_dirs ()  (
-#set -x    
-    local DS_LENGTH=$(cat ${DS_INFO_FILE} | grep -v ":" | wc -l)
+    local DS_LENGTH=$(cat ${DS_INFO_FILE} | grep -v ":" | grep -v "ds.info" | wc -l)
     
     local FIRST_RANDOM_NUMBER=$(random_number 1 ${DS_LENGTH})
     local SECOND_RANDOM_NUMBER=${FIRST_RANDOM_NUMBER}
-    until [ ! ${SECOND_RANDOM_NUMBER} -eq ${FIRST_RANDOM_NUMBER} ];
-    do 
-        SECOND_RANDOM_NUMBER=$(random_number 1 ${DS_LENGTH} )        
+    while [[  ${FIRST_RANDOM_NUMBER} -eq ${SECOND_RANDOM_NUMBER} ]];
+    do        
+        SECOND_RANDOM_NUMBER=$(random_number 1 ${DS_LENGTH} )                       
     done
     local ORIGIN_DIR=$(cat ${DS_INFO_FILE}  | grep -v ":" | head -$(( ${FIRST_RANDOM_NUMBER} +1 )) | tail -1)
     local DEST_DIR=$(cat ${DS_INFO_FILE}  | grep -v ":" | head -${SECOND_RANDOM_NUMBER} | tail -1)
     
-    #set -xv 
     local FULL_ORIG_DIR=$(find . -type d  -name ${ORIGIN_DIR})
     local FULL_DEST_DIR=$(find . -type d  -name ${DEST_DIR})    
     echo "${FULL_ORIG_DIR} ${FULL_DEST_DIR}"
-    #set +xv
-    #sleep 10
-#set +x    
 )
 
 function random_dir ()  (
