@@ -1,0 +1,17 @@
+Comandos necessários
+1. tree
+2. cat
+3. ls
+4. cp ficheiros
+5. mv (renomear, mover ficheiros e directorias)
+6. mkdir
+7. rm (ficheiros)
+8. rm -fr (directorias)
+
+ficheiro4 :Criar a directoria './hoa/d1-2cv/d2-ckb' dentro da directoria './hoa/d1-2cv'
+ficheiro2 :Mover a directoria './hoa/d1-6uw/d2-pgv' para dentro da directoria './hoa/d1-2cv'
+ficheiro3 :Renomear este ficheiro para 'fich_renomeado.txt'
+ficheiro5 :Apagar este ficheiro
+ficheiro6 :Mover este ficheiro para a directoria './hoa/d1-6uw/d2-pgv'
+ficheiro1 :Copiar este ficheiro para a directoria './hoa/d1-2cv/d2-ckb'
+ficheiro7 :Remover uma qualquer directoria ou sub-directoria vazia, caso exista.
