@@ -1,0 +1,19 @@
+/home/pedro/11gpsi-exercicios/dir_files_manangent/teste1/exercicio-aula-pedro-20240303-164027-ubuntu-desktop-8073
+└── uaw
+    └── d1-7n1
+        └── d2-m8m
+            ├── d3-j5r
+            │   ├── d4-q8g
+            │   │   └── ficheiro2
+            │   └── d4-x51
+            │       └── ficheiro5
+            ├── ficheiro1
+            ├── ficheiro3
+            └── ficheiro4
+
+6 directories, 5 files
+ficheiro2 :Copiar este ficheiro para a directoria './uaw/d1-7n1/d2-m8m/d3-j5r/d4-q8g'
+ficheiro5 :Copiar este ficheiro para a directoria './uaw/d1-7n1/d2-m8m/d3-j5r'
+ficheiro1 :Copiar este ficheiro para a directoria ''
+ficheiro3 :Copiar este ficheiro para a directoria './uaw/d1-7n1/d2-m8m/d3-j5r'
+ficheiro4 :Copiar este ficheiro para a directoria './uaw'
